@@ -17,4 +17,7 @@ public class User {
     private String Email;
     private String Password;
 
+    @OneToOne(mappedBy = "user")
+    private Customer customer;
+
 }
