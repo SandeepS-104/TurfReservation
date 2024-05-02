@@ -1,7 +1,7 @@
 package com.truf.reservation.TrufReservation.Controller;
 
 import com.truf.reservation.TrufReservation.Entity.Booking;
-import com.truf.reservation.TrufReservation.Service.BookingService;
+import com.truf.reservation.TrufReservation.Service.Booking.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
