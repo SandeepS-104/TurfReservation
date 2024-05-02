@@ -1,7 +1,8 @@
-package com.truf.reservation.TrufReservation.Service;
+package com.truf.reservation.TrufReservation.Service.Owner;
 
 import com.truf.reservation.TrufReservation.Entity.Owner;
 import com.truf.reservation.TrufReservation.Repository.OwnerRepo;
+import com.truf.reservation.TrufReservation.Service.Owner.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;

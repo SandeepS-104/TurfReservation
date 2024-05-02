@@ -33,8 +33,8 @@ public class Turf {
     private int owner_id;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "turf",cascade = CascadeType.ALL)
-    private List<TurfSlots> turf_slots=new ArrayList<>();
+    @OneToMany(mappedBy = "turf")
+    private List<TurfSlots> turfSlots;
 
     public Turf(int id) {
         this.id = id;

@@ -14,14 +14,18 @@ import java.util.List;
 @Transactional
 public class TurfSlotsServiceImpls implements TurfSlotsService {
 
+    private final TurfSlotsRepository turfSlotsRepository;
+
     @Autowired
-    private TurfSlotsRepository turfSlotsRepository;
+    public TurfSlotsServiceImpls(TurfSlotsRepository turfSlotsRepository) {
+        this.turfSlotsRepository = turfSlotsRepository;
+    }
 
     @Override
     public TurfSlots createTurfSlots(TurfSlots turfSlots) {
         Turf turf = turfSlots.getTurf();
         int slot_count= turf.getNo_of_slots();
-        if(turfSlots.getSlot_id()<=slot_count) {
+        if(turfSlots.getSlot()<=slot_count) {
 
             return turfSlotsRepository.save(turfSlots);
         }
@@ -41,7 +45,7 @@ public class TurfSlotsServiceImpls implements TurfSlotsService {
         TurfSlots existingTurfSlots = turfSlotsRepository.findById(id).orElse(null);
 
         if (existingTurfSlots != null) {
-            existingTurfSlots.setSlot_id(turfSlotsDetails.getSlot_id());
+            existingTurfSlots.setSlot(turfSlotsDetails.getSlot());
             existingTurfSlots.setFrom_time(turfSlotsDetails.getFrom_time());
             existingTurfSlots.setTo_time(turfSlotsDetails.getTo_time());
             existingTurfSlots.setIs_available(turfSlotsDetails.isIs_available());
