@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table
+@Table(name="customer")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,5 +18,8 @@ public class Customer {
     private String email;
     private String phone;
     private String address;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
