@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.engine.internal.Cascade;
 
 @Entity
 @Table(name = "Owner")
@@ -29,6 +30,10 @@ public class Owner {
 
     @Column
     private String phone;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 
