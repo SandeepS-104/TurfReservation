@@ -1,7 +1,7 @@
 package com.truf.reservation.TrufReservation.Controller;
 
 import com.truf.reservation.TrufReservation.Entity.Owner;
-import com.truf.reservation.TrufReservation.Service.OwnerService;
+import com.truf.reservation.TrufReservation.Service.Owner.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

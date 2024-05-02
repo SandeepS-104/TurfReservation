@@ -18,8 +18,8 @@ public class TurfSlots {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-
-        private int slot_id;
+        @Column(name = "slot")
+        private int slot;
         private LocalTime from_time;
         private LocalTime to_time;
         private String is_available;
@@ -35,5 +35,21 @@ public class TurfSlots {
 
         public void setIs_available(String is_available) {
                 this.is_available = is_available;
+        }
+
+        public Turf getTurf() {
+                return turf;
+        }
+
+        public void setTurf(Turf turf) {
+                this.turf = turf;
+        }
+
+        public int getSlot() {
+                return slot;
+        }
+
+        public void setSlot(int slot_id) {
+                this.slot = slot_id;
         }
 }
