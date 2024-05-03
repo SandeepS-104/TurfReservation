@@ -1,8 +1,10 @@
 package com.truf.reservation.TrufReservation.Service.Owner;
 
 import com.truf.reservation.TrufReservation.Entity.Owner;
+import com.truf.reservation.TrufReservation.Entity.User;
 import com.truf.reservation.TrufReservation.Repository.OwnerRepo;
-import com.truf.reservation.TrufReservation.Service.Owner.OwnerService;
+import com.truf.reservation.TrufReservation.Repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,21 +13,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @Service
+@Transactional
 public class OwnerServiceImpls implements OwnerService {
 
     @Autowired
     private OwnerRepo ownerRepo;
 
-    @Override
-    public Owner saveOwner(@RequestBody  Owner owner) {
+    @Autowired
+    private UserRepository userRepository;
 
-        if(owner.getPassword().equals(owner.getConfirmPassword())){
-            return ownerRepo.save(owner);
-        }
-        else {
+    @Transactional
+    @Override
+    public Owner saveOwner(@RequestBody Owner owner) {
+        if (!owner.getPassword().equals(owner.getConfirmPassword())) {
             throw new RuntimeException("Password and Confirm Password does not match!");
         }
-        //return ownerRepo.save(owner);
+
+        // Save the Owner first
+        Owner savedOwner = ownerRepo.save(owner);
+
+        // Get the User from the Owner
+        User user = owner.getUser();
+        if (user != null) {
+
+            // Save the User
+            userRepository.save(user);
+        }
+
+        return savedOwner;
     }
 
     @Override

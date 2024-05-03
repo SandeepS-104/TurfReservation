@@ -6,18 +6,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "\"User\"")
+@Table(name="customer")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
-    private String Email;
-    private String Password;
-
-    @OneToOne(mappedBy = "user")
-    private Customer customer;
+    private int id;
+    private String name;
+    private String email;
+    private String phone;
+    private String address;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
