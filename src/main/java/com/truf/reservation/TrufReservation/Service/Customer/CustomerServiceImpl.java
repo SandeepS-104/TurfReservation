@@ -1,7 +1,8 @@
-package com.truf.reservation.TrufReservation.Service;
+package com.truf.reservation.TrufReservation.Service.Customer;
 
 import com.truf.reservation.TrufReservation.Entity.Customer;
 import com.truf.reservation.TrufReservation.Repository.CustomerRepo;
+import com.truf.reservation.TrufReservation.Service.Customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

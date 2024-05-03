@@ -1,4 +1,4 @@
-package com.truf.reservation.TrufReservation.Service;
+package com.truf.reservation.TrufReservation.Service.Customer;
 
 import com.truf.reservation.TrufReservation.Entity.Customer;
 

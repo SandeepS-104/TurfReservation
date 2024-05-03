@@ -17,15 +17,20 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String Truf_name;
 
     private String user_name;
 
-    private LocalTime slot;
+    private int Truf_id;
+
+    private int slot;
 
     private String date;
 
     private String game;
+
+    @ManyToOne
+    @JoinColumn(name = "TrufSLot_id")
+    private TurfSlots turfSlots;
 
 
 

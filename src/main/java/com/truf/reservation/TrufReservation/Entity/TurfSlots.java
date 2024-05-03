@@ -26,7 +26,7 @@ public class TurfSlots {
         private int price;
 
         @ManyToOne
-        @JoinColumn(name="turf_id")
+        @JoinColumn(name = "turf_id")
         private Turf turf;
 
         public String isIs_available() {
@@ -35,5 +35,17 @@ public class TurfSlots {
 
         public void setIs_available(String is_available) {
                 this.is_available = is_available;
+        }
+
+        @Override
+        public String toString() {
+                return "TurfSlots{" +
+                        "id=" + id +
+                        ", slot_id=" + slot_id +
+                        ", from_time=" + from_time +
+                        ", to_time=" + to_time +
+                        ", is_available='" + is_available + '\'' +
+                        ", price=" + price +
+                        '}';
         }
 }

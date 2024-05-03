@@ -1,7 +1,8 @@
-package com.truf.reservation.TrufReservation.Service;
+package com.truf.reservation.TrufReservation.Service.User;
 
 import com.truf.reservation.TrufReservation.Entity.User;
 import com.truf.reservation.TrufReservation.Repository.UserRepository;
+import com.truf.reservation.TrufReservation.Service.User.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
