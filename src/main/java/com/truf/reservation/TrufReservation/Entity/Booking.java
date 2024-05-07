@@ -17,10 +17,11 @@ public class Booking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
     private String user_name;
 
-    private int Truf_id;
+    @ManyToOne
+    @JoinColumn(name = "truf")
+    private Turf turf;
 
     private int slot;
 
@@ -31,7 +32,6 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "TrufSLot_id")
     private TurfSlots turfSlots;
-
 
 
 }
