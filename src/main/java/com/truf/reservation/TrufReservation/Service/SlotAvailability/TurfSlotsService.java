@@ -11,4 +11,6 @@ public interface TurfSlotsService {
     public TurfSlots updateTurfSlots(int id, TurfSlots turfSlotsDetails);
     void deleteTurfSlots(int id);
     List<TurfSlots> getAllTurfSlots();
+
+    List<TurfSlots> getTurfSlotAvailability();
 }

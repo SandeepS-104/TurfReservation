@@ -46,6 +46,7 @@ public class TurfSlots {
                         ", to_time=" + to_time +
                         ", is_available='" + is_available + '\'' +
                         ", price=" + price +
+                        ", turf=" + turf +
                         '}';
         }
 }

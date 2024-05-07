@@ -41,4 +41,9 @@ import java.util.List;
         public List<TurfSlots> getAllTurfSlots() {
             return turfSlotsService.getAllTurfSlots();
         }
+
+        @GetMapping("/availability")
+        public List<TurfSlots> getAvailableTurfSlots() {
+            return turfSlotsService.getTurfSlotAvailability();
+        }
     }
