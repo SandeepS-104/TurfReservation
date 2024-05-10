@@ -1,8 +1,11 @@
 package com.truf.reservation.TrufReservation.Service.Truf;
 
+import com.truf.reservation.TrufReservation.Entity.Owner;
 import com.truf.reservation.TrufReservation.Entity.Turf;
+import com.truf.reservation.TrufReservation.Entity.TurfSlots;
+import com.truf.reservation.TrufReservation.Repository.OwnerRepo;
 import com.truf.reservation.TrufReservation.Repository.TurfRepository;
-import com.truf.reservation.TrufReservation.Service.Truf.TurfService;
+import com.truf.reservation.TrufReservation.Repository.TurfSlotsRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,12 @@ public class TurfServiceImpls implements TurfService {
 
     @Autowired
     private TurfRepository turfRepository;
+
+    @Autowired
+    private TurfSlotsRepository turfSlotsRepository;
+
+    @Autowired
+    private OwnerRepo ownerRepository;
 
     @Override
     public Turf createTurf(Turf turf) {
@@ -48,6 +57,17 @@ public class TurfServiceImpls implements TurfService {
     @Override
     public List<Turf> getAllTurfs() {
         return turfRepository.findAll();
+    }
+
+    @Override
+    public List<TurfSlots> getSlots(int id) {
+        return turfSlotsRepository.findByTurfId(id);
+    }
+
+    @Override
+    public List<Turf> getTurfByOwner(int id) {
+        Owner owner = ownerRepository.findById(id).orElse(null);
+        return turfRepository.findByOwner(owner);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.truf.reservation.TrufReservation.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

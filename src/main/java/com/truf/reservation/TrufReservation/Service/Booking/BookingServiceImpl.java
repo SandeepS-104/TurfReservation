@@ -6,7 +6,7 @@ import com.truf.reservation.TrufReservation.Entity.TurfSlots;
 import com.truf.reservation.TrufReservation.Repository.BookingRepository;
 import com.truf.reservation.TrufReservation.Repository.TurfRepository;
 import com.truf.reservation.TrufReservation.Repository.TurfSlotsRepository;
-import jakarta.annotation.PostConstruct;
+import com.truf.reservation.TrufReservation.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,20 +21,23 @@ public class BookingServiceImpl implements BookingService {
     private BookingRepository bookingRepository;
     private TurfRepository turfRepository;
     private TurfSlotsRepository turfSlotsRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public BookingServiceImpl(BookingRepository bookingRepository, TurfRepository turfRepository, TurfSlotsRepository turfSlotsRepository) {
+    public BookingServiceImpl(BookingRepository bookingRepository, TurfRepository turfRepository, TurfSlotsRepository turfSlotsRepository, UserRepository userRepository) {
         this.bookingRepository = bookingRepository;
         this.turfRepository = turfRepository;
         this.turfSlotsRepository = turfSlotsRepository;
+        this.userRepository = userRepository;
     }
 
 
+   // User user = userRepository.findByUser_name()
     public void init() {
         List<Booking> bookings = bookingRepository.findAll();
         for (Booking booking : bookings) {
             TurfSlots turfSlots = booking.getTurfSlots();
-            LocalDate date = LocalDate.parse(booking.getDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate date = LocalDate.parse(booking.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             LocalTime time = turfSlots.getTo_time();
             LocalDateTime dateTime = LocalDateTime.of(date, time);
             if (dateTime.isBefore(LocalDateTime.now())) {
@@ -51,7 +54,7 @@ public class BookingServiceImpl implements BookingService {
         if(turf == null) {
             throw new RuntimeException("Turf is null");
         }
-        int turf_id = turf.getId();
+        Integer turf_id = turf.getId();
         TurfSlots ts = turfSlotsRepository.findByTurfIdAndSlotId(turf_id, slot_id);
         int ts_id = ts.getId();
 
@@ -85,7 +88,7 @@ public class BookingServiceImpl implements BookingService {
         Booking existingBooking = bookingRepository.findById(id).orElse(null);
         if (existingBooking != null) {
             existingBooking.setTurf(updateBooking.getTurf());
-            existingBooking.setUser_name(updateBooking.getUser_name());
+            existingBooking.setCustomer_name(updateBooking.getCustomer_name());
             existingBooking.setSlot(updateBooking.getSlot());
             existingBooking.setDate(updateBooking.getDate());
             existingBooking.setGame(updateBooking.getGame());
@@ -99,5 +102,14 @@ public class BookingServiceImpl implements BookingService {
         bookingRepository.deleteById(id);
     }
 
+    @Override
+    public List<Booking> findBookingByUserId(int id) {
+        return bookingRepository.findByUserId(id);
+    }
+
+    @Override
+    public List<Booking> findBookingByTurfId(int id) {
+        return bookingRepository.findByTurfId(id);
+    }
 
 }

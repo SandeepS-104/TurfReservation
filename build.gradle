@@ -32,6 +32,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.flywaydb:flyway-core'
 	runtimeOnly 'org.postgresql:postgresql'
+
+}
+compileJava {
+	options.compilerArgs << '-parameters'
 }
 
 tasks.named('test') {

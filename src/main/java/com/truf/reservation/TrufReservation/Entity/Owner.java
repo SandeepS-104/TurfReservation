@@ -31,9 +31,15 @@ public class Owner {
     @Column
     private String phone;
 
+    private String role;
+
+    private String code;
+
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
 
 
 
