@@ -30,13 +30,24 @@ public class Turf {
     private int no_of_slots;
     private int no_of_days_available;
 
-    private int owner_id;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
     @JsonIgnore
     @OneToMany(mappedBy = "turf")
     private List<TurfSlots> turfSlots;
     public Turf(int id) {
         this.id = id;
+    }
+
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
@@ -50,7 +61,7 @@ public class Turf {
                 ", description='" + description + '\'' +
                 ", no_of_slots=" + no_of_slots +
                 ", no_of_days_available=" + no_of_days_available +
-                ", owner_id=" + owner_id +
+                ", owner_id=" + owner +
                 '}';
     }
 }

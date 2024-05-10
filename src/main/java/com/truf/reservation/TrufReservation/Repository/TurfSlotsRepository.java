@@ -16,4 +16,9 @@ public interface TurfSlotsRepository extends JpaRepository<TurfSlots,Integer> {
     @Query("SELECT ts FROM TurfSlots ts WHERE ts.is_available = 'yes'")
     List<TurfSlots> findByIsAvailable();
 
+    @Query("SELECT ts FROM TurfSlots ts WHERE ts.turf.id = :turfId AND ts.is_available = 'yes'")
+    List<TurfSlots> findAvailByTurfId(@Param("turfId") int turfId);
+
+    @Query("SELECT ts FROM TurfSlots ts WHERE ts.turf.id = :turfId")
+    List<TurfSlots> findByTurfId(@Param("turfId") int turfId);
 }

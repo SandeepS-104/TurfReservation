@@ -67,4 +67,14 @@ public class TurfSlotsServiceImpls implements TurfSlotsService {
     public List<TurfSlots> getTurfSlotAvailability() {
         return turfSlotsRepository.findByIsAvailable();
     }
+
+    @Override
+    public List<TurfSlots> getTurfSlotsByTurfId(int id) {
+        return turfSlotsRepository.findAvailByTurfId(id);
+    }
+
+    @Override
+    public List<TurfSlots> getSlotsByTurfId(int id) {
+        return turfSlotsRepository.findByTurfId(id);
+    }
 }

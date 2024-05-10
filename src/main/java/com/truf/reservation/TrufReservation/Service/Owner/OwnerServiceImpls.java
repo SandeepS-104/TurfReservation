@@ -29,18 +29,23 @@ public class OwnerServiceImpls implements OwnerService {
             throw new RuntimeException("Password and Confirm Password does not match!");
         }
 
-        // Save the Owner first
-        Owner savedOwner = ownerRepo.save(owner);
-
-        // Get the User from the Owner
-        User user = owner.getUser();
-        if (user != null) {
-
-            // Save the User
-            userRepository.save(user);
-        }
-
-        return savedOwner;
+//        // Save the Owner first
+//        Owner savedOwner = ownerRepo.save(owner);
+//
+//        // Get the User from the Owner
+//        User user = owner.getUser();
+//        if (user != null) {
+//
+//            // Save the User
+//            userRepository.save(user);
+//        }
+        User user = new User();
+        user.setName(owner.getName());
+        user.setEmail(owner.getEmail());
+        user.setPassword(owner.getPassword());
+        userRepository.save(user);
+        owner.setUser(user);
+        return ownerRepo.save(owner);
     }
 
     @Override

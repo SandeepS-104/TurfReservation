@@ -13,4 +13,8 @@ public interface TurfSlotsService {
     List<TurfSlots> getAllTurfSlots();
 
     List<TurfSlots> getTurfSlotAvailability();
+
+    List<TurfSlots> getTurfSlotsByTurfId(int id);
+
+    List<TurfSlots> getSlotsByTurfId(int id);
 }
